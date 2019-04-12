@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [],
   imports: [
     // Import the individual functionality modules here
-    NgbCollapseModule
+    NgbCollapseModule,
+    NgbAlertModule
   ],
   exports: [
-    NgbCollapseModule
+    NgbCollapseModule,
+    NgbAlertModule
   ]
 })
 export class NgBootstrapModule { }
