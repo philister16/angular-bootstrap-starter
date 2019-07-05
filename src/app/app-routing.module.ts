@@ -8,7 +8,7 @@ import { DashboardLayoutComponent } from './layout/dashboard-layout/dashboard-la
 import { LayoutModule } from './layout/layout.module';
 
 const routes: Routes = [
-  { path: '', component: BlankLayoutComponent },
+  { path: '', component: BlankLayoutComponent, pathMatch: 'full' },
   { path: 'topbar', component: TopbarLayoutComponent },
   { path: 'centered', component: CenteredLayoutComponent },
   { path: 'dashboard', component: DashboardLayoutComponent },

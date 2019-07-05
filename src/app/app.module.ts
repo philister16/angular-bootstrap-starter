@@ -4,17 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { GlobalMessageComponent } from './global-message/global-message.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    GlobalMessageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
-    AppRoutingModule
+    AuthModule,
+    AppRoutingModule, // must be after all other route modules as import order matters
   ],
   providers: [],
   bootstrap: [AppComponent]
