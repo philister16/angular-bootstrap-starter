@@ -1,0 +1,93 @@
+<div class="container-fluid h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-sm-12 offset-md-4 col-md-4">
+        <div class="card">
+            <div class="card-header text-center bg-secondary">
+                <a routerLink="/">                
+                    <img src="assets/logo.svg" alt="Logo" class="w-25">
+                </a>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title pb-3">{{ title }}</h4>
+                <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                    <div *ngIf="case === 'signup'">
+                        <div class="form-group">
+                            <label for="firstname">Firstname</label>
+                            <input 
+                                ngModel 
+                                type="text" 
+                                name="firstname" 
+                                id="firstname" 
+                                class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Lastname</label>
+                            <input 
+                                ngModel 
+                                type="text" 
+                                name="lastname" 
+                                id="lastname" 
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                            ngModel
+                            #email="ngModel" 
+                            required
+                            email
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            class="form-control"
+                            [ngClass]="{ 'is-invalid': email.invalid && (email.touched || authForm.submitted) }">
+                        <div class="invalid-feedback">Email is required.</div>
+                    </div>
+                    <div *ngIf="case !== 'forgot-password'" class="form-group">
+                        <label for="pwd">Password</label>
+                        <input 
+                            ngModel
+                            required
+                            minlength="8"
+                            #pwd="ngModel" 
+                            type="password" 
+                            name="pwd" 
+                            id="pwd" 
+                            class="form-control"
+                            [ngClass]="{ 'is-invalid': pwd.invalid && (pwd.touched || authForm.submitted) }">
+                            <div *ngIf="pwd.invalid && pwd.errors.required" class="invalid-feedback">Password is required.</div>
+                            <div *ngIf="pwd.invalid && pwd.errors.minlength && !pwd.errors.required" class="invalid-feedback">Minimum of 8 characters.</div>
+                    </div>
+                    <div *ngIf="case === 'signup'" class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input 
+                                ngModel 
+                                required
+                                #terms="ngModel"
+                                class="custom-control-input" 
+                                name="terms" 
+                                type="checkbox" 
+                                value="" 
+                                id="terms"
+                                [ngClass]="{ 'is-invalid': terms.invalid && (terms.touched || authForm.submitted ) }">
+                            <label class="custom-control-label" for="terms">
+                                I agree to the <a href="#">terms and conditions</a>.
+                            </label>
+                            <div class="invalid-feedback">You need to accept the terms.</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">{{ button }}</button>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-between">
+                    <a *ngIf="case !== 'forgot-password'" routerLink="/auth/forgot-password">Forgot password</a>
+                    <a *ngIf="case !== 'signup'" routerLink="/auth/signup">Sign up</a>
+                    <a *ngIf="case !== 'login'" routerLink="/auth/login">Login</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     BrowserModule,
     SharedModule,
+    CoreModule,
     AuthModule,
     AppRoutingModule, // must be after all other route modules as import order matters
   ],

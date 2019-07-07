@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootswatch/dist/flatly/variables";
+
+/* Change the import path of bootswatch to the desired style
+Check all available styles here: https://www.bootswatch.com */
+@import "~bootswatch/dist/cerulean/variables";
 @import "~bootstrap/scss/bootstrap.scss";
-@import "~bootswatch/dist/flatly/bootswatch";
+@import "~bootswatch/dist/cerulean/bootswatch";
 
 
 html, body {
