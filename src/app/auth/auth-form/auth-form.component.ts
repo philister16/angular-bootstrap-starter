@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 const CASES = {
   'login': {
@@ -28,8 +29,11 @@ export class AuthFormComponent implements OnInit, OnDestroy {
   case: string;
   title: string;
   button: string;
+  hasError: string = null;
+  hasSuccess: string = null;
+  isLoading: boolean = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
     this.$routeSub = this.route.url.subscribe(url => {
@@ -41,9 +45,18 @@ export class AuthFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    if (form.valid) {
-      console.log(form.value);
+    this.hasError = null;
+    if (!form.valid) {
+      return;
     }
+    this.isLoading = true;
+    this.authService.registerUser(form.value).subscribe(res => {
+      this.hasSuccess = 'REGISTERED_USER';
+      this.isLoading = false;
+    }, err => {
+      this.hasError = err;
+      this.isLoading = false;
+    });
   }
 
   ngOnDestroy() {
