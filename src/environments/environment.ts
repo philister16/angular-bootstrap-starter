@@ -1,4 +1,4 @@
-import { FIREBASE_KEY } from '../private';
+import { firebaseConfig } from '../private';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -6,7 +6,10 @@ import { FIREBASE_KEY } from '../private';
 
 export const environment = {
   production: false,
-  api: `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${FIREBASE_KEY}`
+  firebaseConfig: firebaseConfig,
+  logoutRoute: '/auth/login',
+  loginRoute: '/topbar',
+  firstLoginRoute: '/account' // used for first login after sign-up only
 };
 
 /*

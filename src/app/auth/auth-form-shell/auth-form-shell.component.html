@@ -1,0 +1,23 @@
+<div class="container-fluid h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-sm-12 offset-md-4 col-md-4">
+        <div class="card">
+            <div *ngIf="header" class="card-header text-center bg-secondary">
+                <a routerLink="/">                
+                    <img src="assets/logo.svg" alt="Logo" class="w-25">
+                </a>
+            </div>
+            <div class="card-body">
+                <ng-content></ng-content>
+            </div>
+            <div *ngIf="footer" class="card-footer">
+                <div class="d-flex justify-content-between">
+                    <a *ngIf="case !== 'forgot-password' && case !== 'signup'" routerLink="/auth/forgot-password">Forgot password</a>
+                    <a *ngIf="case !== 'signup'" routerLink="/auth/signup">Sign up</a>
+                    <a *ngIf="case !== 'login'" routerLink="/auth/login">Login</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

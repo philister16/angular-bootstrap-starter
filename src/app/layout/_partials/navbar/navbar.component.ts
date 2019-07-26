@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   isCollapsed = true;
 
-  constructor() { }
+  constructor(private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
   }
@@ -17,8 +18,11 @@ export class NavbarComponent implements OnInit {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  closeNav() {
-    this.isCollapsed = true;
+  closeNav(e) {
+    // Make sure to only close nav if we do not want to open a dropdown
+    if (!e.classList.contains('dropdown-toggle')) {
+      this.isCollapsed = true;
+    }
   }
 
 }

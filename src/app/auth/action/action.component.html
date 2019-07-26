@@ -1,0 +1,12 @@
+<app-auth-form-shell>
+    <div *ngIf="isWorking" class="text-center">
+        <fa-icon *ngIf="isWorking" icon="circle-notch" [spin]=true size="3x"></fa-icon>
+    </div>
+    <app-reset-password *ngIf="showPasswordReset" (newPassword)="resetPassword($event)"></app-reset-password>
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="alert alert-success" role="alert">
+        {{ successMessage }}
+    </div>
+</app-auth-form-shell>

@@ -1,0 +1,38 @@
+<app-auth-form-shell>
+    <h4 class="card-title pb-3">Login</h4>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        <p class="m-0">{{ errorMessage }}</p>
+    </div>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+                ngModel
+                #email="ngModel" 
+                required
+                email
+                type="email" 
+                name="email" 
+                id="email" 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': email.invalid && (email.touched || loginForm.submitted) }">
+            <div class="invalid-feedback">Email is required.</div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+                ngModel
+                required
+                minlength="8"
+                #password="ngModel" 
+                type="password" 
+                name="password" 
+                id="password" 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': password.invalid && (password.touched || loginForm.submitted) }">
+                <div *ngIf="password.invalid && password.errors.required" class="invalid-feedback">Password is required.</div>
+                <div *ngIf="password.invalid && password.errors.minlength && !password.errors.required" class="invalid-feedback">Minimum of 8 characters.</div>
+        </div>
+        <app-loading-button btnClass="btn btn-block btn-primary" btnType="submit" [isSpinning]="isLoading">Login</app-loading-button>
+    </form>
+</app-auth-form-shell>

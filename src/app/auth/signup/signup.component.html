@@ -1,0 +1,74 @@
+<app-auth-form-shell>
+    <h4 class="card-title pb-3">Sign up</h4>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        <p class="m-0">{{ errorMessage }}</p>
+    </div>
+    <form #signupForm="ngForm" (ngSubmit)="onSignup(signupForm)">
+        <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <input 
+                ngModel 
+                type="text" 
+                name="firstname" 
+                id="firstname" 
+                class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <input 
+                ngModel 
+                type="text" 
+                name="lastname" 
+                id="lastname" 
+                class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+                ngModel
+                #email="ngModel" 
+                required
+                email
+                type="email" 
+                name="email" 
+                id="email" 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': email.invalid && (email.touched || signupForm.submitted) }">
+            <div class="invalid-feedback">Email is required.</div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+                ngModel
+                required
+                minlength="8"
+                #password="ngModel" 
+                type="password" 
+                name="password" 
+                id="password" 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': password.invalid && (password.touched || signupForm.submitted) }">
+                <div *ngIf="password.invalid && password.errors.required" class="invalid-feedback">Password is required.</div>
+                <div *ngIf="password.invalid && password.errors.minlength && !password.errors.required" class="invalid-feedback">Minimum of 8 characters.</div>
+        </div>
+        <div class="form-group">
+            <div class="custom-control custom-checkbox">
+                <input 
+                    ngModel 
+                    required
+                    #terms="ngModel"
+                    class="custom-control-input" 
+                    name="terms" 
+                    type="checkbox" 
+                    value="" 
+                    id="terms"
+                    [ngClass]="{ 'is-invalid': terms.invalid && (terms.touched || signupForm.submitted ) }">
+                <label class="custom-control-label" for="terms">
+                    I agree to the <a href="#">terms and conditions</a>.
+                </label>
+                <div class="invalid-feedback">You need to accept the terms.</div>
+            </div>
+        </div>
+        <app-loading-button btnClass="btn btn-block btn-primary" btnType="submit" [isSpinning]="isLoading">Sign up</app-loading-button>
+    </form>
+</app-auth-form-shell>

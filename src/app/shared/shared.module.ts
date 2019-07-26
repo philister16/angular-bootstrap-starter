@@ -5,9 +5,10 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { AlertComponent } from './alert/alert.component';
 import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 import { FaIconsModule } from './fa-icons/fa-icons.module';
+import { DropdownDirective } from './directives/dropdown.directive';
 
 @NgModule({
-  declarations: [ClickOutsideDirective, AlertComponent, LoadingButtonComponent],
+  declarations: [ClickOutsideDirective, AlertComponent, LoadingButtonComponent, DropdownDirective],
   imports: [
     CommonModule,
     NgBootstrapModule,
@@ -17,6 +18,7 @@ import { FaIconsModule } from './fa-icons/fa-icons.module';
     NgBootstrapModule,
     FaIconsModule,
     ClickOutsideDirective,
+    DropdownDirective,
     AlertComponent,
     LoadingButtonComponent
   ]

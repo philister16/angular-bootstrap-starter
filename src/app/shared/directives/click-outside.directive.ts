@@ -11,7 +11,7 @@ export class ClickOutsideDirective {
   @HostListener('document:click', ['$event.target']) onClick(targetEl) {
     const clickedInside = this.elemRef.nativeElement.contains(targetEl);
     if (!clickedInside) {
-      this.appClickOutside.emit(null);
+      this.appClickOutside.emit(targetEl);
     }
   }
 
