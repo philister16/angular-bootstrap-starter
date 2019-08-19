@@ -8,21 +8,33 @@ import { TestComponent } from './test/test.component';
 import { GuardService } from './auth/guard.service';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'test' },
-  { path: 'test', component: TopbarLayoutComponent, canActivate: [GuardService], children: [
-    { path: '', pathMatch: 'full', component: TestComponent }
-  ] },
-  { path: 'topbar', component: TopbarLayoutComponent },
-  { path: 'dashboard', component: DashboardLayoutComponent },
-  { 
-    path: 'account', 
-    canLoad: [GuardService],
-    loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule)
-  },
+  // Entry route
+  { path: '', pathMatch: 'full', redirectTo: 'layout' },
+
+  // Open routes
+  { path: 'layout', children: [
+    { path: '', pathMatch: 'full', redirectTo: 'topbar' },
+    { path: 'topbar', component: TopbarLayoutComponent },
+    { path: 'dashboard', component: DashboardLayoutComponent },
+  ]},
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule)
   },
+
+  // Guarded by canActivate routes
+  { path: 'test', canActivate: [GuardService], component: TestComponent },
+
+  // Guarded by canLoad routes
+  { 
+    path: 'account', 
+    canLoad: [GuardService],
+    canActivate: [GuardService],
+    component: TopbarLayoutComponent,
+    loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule)
+  },
+
+  // Fallback routes
   { path: '**', redirectTo: '404' },
   { path: '404', component: NotFoundComponent}
 ];
