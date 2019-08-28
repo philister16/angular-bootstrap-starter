@@ -6,9 +6,16 @@ import { AlertComponent } from './alert/alert.component';
 import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 import { FaIconsModule } from './fa-icons/fa-icons.module';
 import { DropdownDirective } from './directives/dropdown.directive';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
-  declarations: [ClickOutsideDirective, AlertComponent, LoadingButtonComponent, DropdownDirective],
+  declarations: [
+    ClickOutsideDirective, 
+    AlertComponent, 
+    LoadingButtonComponent, 
+    DropdownDirective, 
+    ToastComponent
+  ],
   imports: [
     CommonModule,
     NgBootstrapModule,
@@ -20,7 +27,8 @@ import { DropdownDirective } from './directives/dropdown.directive';
     ClickOutsideDirective,
     DropdownDirective,
     AlertComponent,
-    LoadingButtonComponent
+    LoadingButtonComponent,
+    ToastComponent
   ]
 })
 export class SharedModule { }

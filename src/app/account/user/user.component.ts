@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserInfo } from './user-info.interface';
 import { NgForm } from '@angular/forms';
 import { UserService } from './user.service';
+import { ToastService } from 'src/app/shared/toast/toast.service';
 
 @Component({
   selector: 'app-user',
@@ -12,7 +13,7 @@ import { UserService } from './user.service';
 export class UserComponent implements OnInit {
   userInfo: UserInfo;
 
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private toastService: ToastService) { }
 
   ngOnInit() {
     this.userInfo = this.route.snapshot.data.userInfo;
@@ -24,6 +25,7 @@ export class UserComponent implements OnInit {
     }
     try {
       await this.userService.saveUserInfo(form.value);
+      this.toastService.show({ type: 'success', message: 'User details updated successfully.', header: 'Saved' });
     } catch(err) {
       console.error(err);
     }
