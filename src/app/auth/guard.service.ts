@@ -8,10 +8,10 @@ import { first } from 'rxjs/operators';
 })
 export class GuardService implements CanActivate, CanLoad {
   redirectUrl: string | null = null;
-  user: firebase.User;
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private router: Router, private afAuth: AngularFireAuth) {}
 
+  // We use this helper function instead of afAuth.auth.currentUser to make sure that guard waits for the evaluation if there is a user (promise)
   private hasUser() {
     return this.afAuth.user.pipe(first()).toPromise();
   }
@@ -22,8 +22,9 @@ export class GuardService implements CanActivate, CanLoad {
       if (user) {
         return true;
       }
-        this.redirectUrl = state.url;
-        this.router.navigateByUrl('/auth/login').finally(() => false);
+      this.redirectUrl = state.url;
+      this.router.navigateByUrl('/auth/login').finally(() => false);
+      return false;
     } catch(err) {
       throw err;
     }
@@ -37,6 +38,7 @@ export class GuardService implements CanActivate, CanLoad {
       }
       this.redirectUrl = window.location.pathname;
       this.router.navigateByUrl('/auth/login').finally(() => false);
+      return false;
     } catch(err) {
       throw err;
     }

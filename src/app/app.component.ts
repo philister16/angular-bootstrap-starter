@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +8,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AppComponent {
   title = 'angular-bootstrap-starter';
 
-  // Needs to be instantiated here to make sure the current user is tracked
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor() { }
+
 }
