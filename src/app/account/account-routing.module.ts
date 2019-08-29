@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './user/user.component';
-import { UserResolver } from './user/user.resolver';
+import { UserResolver } from './user.resolver';
+import { AccountComponent } from './account.component';
 
 const ACCOUNT_ROUTES: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'user' }, // /account
-  { path: 'user', resolve: { userInfo: UserResolver }, component: UserComponent }
+  { path: '', pathMatch: 'full', component: AccountComponent, resolve: { userInfo: UserResolver } }, // /account
 ];
 
 @NgModule({
