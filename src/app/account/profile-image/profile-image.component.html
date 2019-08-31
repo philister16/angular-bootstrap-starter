@@ -1,1 +1,10 @@
-<p>profile-image works!</p>
+<figure *ngIf="!isUploading && !isRendering" class="rounded-circle" (click)="fileInput.click()" [ngStyle]="{ 'background-image': 'url(' + image + ')' }">
+    <button type="button" class="btn btn-secondary btn-sm rounded-circle float-right m-2">
+        <fa-icon icon="pencil-alt"></fa-icon>
+    </button>
+    <img src="{{ image }}" class="sr-only">
+</figure>
+<input type="file" accept=".png, .jpg, .jpeg, image/png, image/jpg, image/jpeg" hidden #fileInput (change)="onFileSelected($event.target.files)" id="file-input">
+<div *ngIf="isUploading" class="progress">
+    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': (percentage | async | number) + '%' }"></div>
+</div>

@@ -6,6 +6,7 @@ import { UserResolver } from './user.resolver';
 import { FormsModule } from '@angular/forms';
 import { ProfileImageComponent } from './profile-image/profile-image.component';
 import { AccountComponent } from './account.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,6 +15,7 @@ import { AccountComponent } from './account.component';
   declarations: [UserInfoComponent, ProfileImageComponent, AccountComponent],
   imports: [
     CommonModule,
+    SharedModule,
     FormsModule,
     AccountRoutingModule
   ]
