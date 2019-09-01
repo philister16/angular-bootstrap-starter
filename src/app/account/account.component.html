@@ -1,9 +1,13 @@
-<h2 class="my-2">User Account</h2>
-<h4>Details</h4>
+<h3 class="my-5">User Account</h3>
+<h4 class="py-3">Details</h4>
 <app-user-info [userInfo]="userInfo"></app-user-info>
 <hr>
-<h4>Photo</h4>
+<h4 class="py-3">Photo</h4>
 <div style="height: 150px; width: 150px">
     <app-profile-image [image]="userInfo.photoURL"></app-profile-image>
 </div>
 <hr>
+<h4 class="py-3">Email</h4>
+    <app-change-email [email]="userInfo.email"></app-change-email>
+<hr>
+<h4 class="py-3">Password</h4>

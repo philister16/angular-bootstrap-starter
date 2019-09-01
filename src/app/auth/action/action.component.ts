@@ -29,6 +29,9 @@ export class ActionComponent implements OnInit {
       case 'resetPassword':
         this.getNewPassword();
         break;
+      case 'recoverEmail':
+        this.recoverEmail(code);
+        break;
       default:
         this.isWorking = false;
         this.error(new Error('Invalid URL or code.'));
@@ -39,6 +42,17 @@ export class ActionComponent implements OnInit {
     try {
       await this.afAuth.auth.applyActionCode(code);
       this.success('Email verifiation was successful.');
+    } catch(err) {
+      this.error(err);
+    }
+  }
+
+  async recoverEmail(code) {
+
+    try {
+      await this.afAuth.auth.checkActionCode(code);
+      await this.afAuth.auth.applyActionCode(code);
+      this.success('Your email was recovered successfully. You can now use your old email to login to your account.');
     } catch(err) {
       this.error(err);
     }

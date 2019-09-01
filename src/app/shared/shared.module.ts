@@ -7,6 +7,8 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
 import { FaIconsModule } from './fa-icons/fa-icons.module';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { ToastComponent } from './toast/toast.component';
+import { ReauthenticateComponent } from './reauthenticate/reauthenticate.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,12 +16,14 @@ import { ToastComponent } from './toast/toast.component';
     AlertComponent, 
     LoadingButtonComponent, 
     DropdownDirective, 
-    ToastComponent
+    ToastComponent,
+    ReauthenticateComponent
   ],
   imports: [
     CommonModule,
     NgBootstrapModule,
-    FaIconsModule
+    FaIconsModule,
+    FormsModule
   ],
   exports: [
     NgBootstrapModule,
@@ -29,6 +33,7 @@ import { ToastComponent } from './toast/toast.component';
     AlertComponent,
     LoadingButtonComponent,
     ToastComponent
-  ]
+  ],
+  entryComponents: [ReauthenticateComponent]
 })
 export class SharedModule { }

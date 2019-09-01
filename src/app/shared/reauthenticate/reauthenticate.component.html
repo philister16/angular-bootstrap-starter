@@ -1,0 +1,44 @@
+<form #reAuthForm="ngForm" (ngSubmit)="onSubmit(reAuthForm)">
+    <div class="modal-header">
+        <h4 class="modal-title">Please authenticate yourself</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.close(false)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>We need your password and username to {{ intent }}</p>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+                ngModel 
+                #emailField="ngModel" 
+                type="email" 
+                name="email" 
+                id="email" 
+                class="form-control" 
+                required 
+                email
+                [ngClass]="{ 'is-invalid': emailField.invalid && (emailField.touched || reAuthForm.submitted ) }">
+            <div class="invalid-feedback">A valid email address is required.</div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+                ngModel 
+                #passwordField="ngModel" 
+                type="password" 
+                name="password" 
+                id="password" 
+                class="form-control" 
+                required
+                [ngClass]="{ 'is-invalid': passwordField.invalid && (passwordField.touched || reAuthForm.submitted ) }">
+            <div class="invalid-feedback">Please provide your password.</div>
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <app-loading-button btnClass="btn btn-block btn-primary" btnType="submit" [isSpinning]="isLoading">Submit</app-loading-button>
+    </div>
+</form>

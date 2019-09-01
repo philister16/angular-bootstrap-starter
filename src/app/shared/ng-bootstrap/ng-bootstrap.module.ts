@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { NgbCollapseModule, NgbAlertModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbAlertModule, NgbToastModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [],
@@ -8,12 +8,14 @@ import { NgbCollapseModule, NgbAlertModule, NgbToastModule } from '@ng-bootstrap
     // Import the individual functionality modules here
     NgbCollapseModule,
     NgbAlertModule,
-    NgbToastModule
+    NgbToastModule,
+    NgbModalModule
   ],
   exports: [
     NgbCollapseModule,
     NgbAlertModule,
-    NgbToastModule
+    NgbToastModule,
+    NgbModalModule
   ]
 })
 export class NgBootstrapModule { }

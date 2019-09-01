@@ -20,7 +20,8 @@ import { LogoutComponent } from './logout/logout.component';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ActionComponent,
-    LogoutComponent],
+    LogoutComponent,
+    ],
   imports: [
     CommonModule,
     SharedModule,

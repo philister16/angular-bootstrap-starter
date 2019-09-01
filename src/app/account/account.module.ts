@@ -7,12 +7,11 @@ import { FormsModule } from '@angular/forms';
 import { ProfileImageComponent } from './profile-image/profile-image.component';
 import { AccountComponent } from './account.component';
 import { SharedModule } from '../shared/shared.module';
-
-
+import { ChangeEmailComponent } from './change-email/change-email.component';
 
 @NgModule({
   providers: [UserResolver],
-  declarations: [UserInfoComponent, ProfileImageComponent, AccountComponent],
+  declarations: [UserInfoComponent, ProfileImageComponent, AccountComponent, ChangeEmailComponent],
   imports: [
     CommonModule,
     SharedModule,

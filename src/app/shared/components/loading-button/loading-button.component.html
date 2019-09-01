@@ -1,4 +1,4 @@
 <button [class]="btnClass" [type]="btnType">
-    <ng-content *ngIf="!isSpinning"></ng-content>
-    <fa-icon *ngIf="isSpinning" icon="circle-notch" [spin]=true></fa-icon>
+    <fa-icon *ngIf="isSpinning" icon="circle-notch" [spin]=true class="mr-1"></fa-icon>
+    <ng-content></ng-content>
 </button>
