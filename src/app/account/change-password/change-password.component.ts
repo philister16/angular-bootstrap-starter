@@ -1,21 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ReauthenticateComponent } from 'src/app/shared/reauthenticate/reauthenticate.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
-  selector: 'app-change-email',
-  templateUrl: './change-email.component.html',
-  styleUrls: ['./change-email.component.scss']
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.scss']
 })
-export class ChangeEmailComponent implements OnInit {
-  @Input() email: string;
-  isLoading = false;
+export class ChangePasswordComponent implements OnInit {
+  isLoading: boolean = false;
   errorMessage: string | null;
   success: boolean = false;
 
-  constructor(private modalService: NgbModal, private afAuth: AngularFireAuth) { }
+  constructor(private modal: NgbModal, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
   }
@@ -25,19 +24,20 @@ export class ChangeEmailComponent implements OnInit {
       return;
     }
 
-    this.isLoading = true;
     this.success = false;
-    
+    this.isLoading = true;
+
     try {
       const result = await this.reAuthModal();
+      console.log(result);
       if (!result) {
         this.isLoading = false;
         return;
       }
-      const { email } = form.value;
-      await this.afAuth.auth.currentUser.updateEmail(email);
-      await this.afAuth.auth.currentUser.sendEmailVerification();
+      const { newPassword } = form.value;
+      await this.afAuth.auth.currentUser.updatePassword(newPassword);
       this.success = true;
+      form.resetForm();
       this.isLoading = false;
     } catch(err) {
       this.errorMessage = err.message;
@@ -46,8 +46,8 @@ export class ChangeEmailComponent implements OnInit {
   }
 
   reAuthModal() {
-    const modalRef = this.modalService.open(ReauthenticateComponent);
-    modalRef.componentInstance.intent = "Please confirm with your existing email and password to change to a new email address.";
+    const modalRef = this.modal.open(ReauthenticateComponent);
+    modalRef.componentInstance.intent = 'Please confirm with your existing email and password to change to a new password.';
     return modalRef.result;
   }
 

@@ -1,9 +1,7 @@
-<div *ngIf="success" class="alert alert-success">
+<ngb-alert *ngIf="success" type="success" (close)="success = false">
     You have successfully changed your email address. We have sent a verification link to your new email address. Should you wish to recover your previous email address please check the recovery email we have sent to your old email address.
-</div>
-<div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
-</div>
+</ngb-alert>
+<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
 <form #emailForm="ngForm" (ngSubmit)="onSubmit(emailForm)">
     <div class="form-group">
         <input
