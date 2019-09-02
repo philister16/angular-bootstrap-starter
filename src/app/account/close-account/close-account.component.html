@@ -1,0 +1,23 @@
+<button *ngIf="!wantToClose" type="button" class="btn btn-outline-secondary mb-3" (click)="wantToClose = true">Close my account</button>
+<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+<ngb-alert *ngIf="wantToClose" [dismissible]="false" type="warning">
+    <p>
+        <strong>Warning!</strong> This will permantenly delete your account. This action cannot be undone. Please type <code>CLOSE</code> and click to continue.
+    </p>
+    <form #closeAccountForm="ngForm" (ngSubmit)="onSubmit(closeAccountForm)">
+        <div class="form-group">
+            <input 
+                ngModel
+                name="close"
+                #closeField="ngModel"
+                type="text"
+                class="form-control"
+                required
+                pattern="^CLOSE$"
+                [ngClass]="{ 'is-invalid': closeField.invalid && (closeField.touched || closeAccountForm.submitted) }">
+            <div class="invalid-feedback">Type CLOSE in all caps to confirm that you want to close the account.</div>
+        </div>
+        <button type="button" class="btn btn-outline-secondary mr-1" (click)="onCancel()">Cancel</button>
+        <app-loading-button btnClass="btn btn-secondary" btnType="submit" [isSpinning]="isLoading">Delete account</app-loading-button>
+    </form>
+</ngb-alert>

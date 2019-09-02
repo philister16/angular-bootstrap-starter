@@ -9,10 +9,11 @@ import { AccountComponent } from './account.component';
 import { SharedModule } from '../shared/shared.module';
 import { ChangeEmailComponent } from './change-email/change-email.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { CloseAccountComponent } from './close-account/close-account.component';
 
 @NgModule({
   providers: [UserResolver],
-  declarations: [UserInfoComponent, ProfileImageComponent, AccountComponent, ChangeEmailComponent, ChangePasswordComponent],
+  declarations: [UserInfoComponent, ProfileImageComponent, AccountComponent, ChangeEmailComponent, ChangePasswordComponent, CloseAccountComponent],
   imports: [
     CommonModule,
     SharedModule,

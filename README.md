@@ -18,6 +18,7 @@ To use the project clone it, install the depencies and off you go.
 ```bash
 git clone https://github.com/philister16/angular-bootstrap-starter.git
 cd angular-bootstrap-starter
+npm install
 ng serve
 ```
 
