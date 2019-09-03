@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   firebaseConfig: firebaseConfig,
   logoutRoute: '/auth/login',
-  loginRoute: '/topbar',
+  loginRoute: '/',
   firstLoginRoute: '/account' // used for first login after sign-up only
 };
 
