@@ -13,7 +13,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class ProfileImageComponent implements OnInit {
   @Input() image: string;
-  placeholderImage: 'assets/user-placeholder.svg'
+  placeholderImage: string = 'assets/user-placeholder.svg';
   task: AngularFireUploadTask;
   percentage: Observable<number>;
   snapshot: Observable<any>;

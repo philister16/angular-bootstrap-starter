@@ -46,9 +46,15 @@ export class CloseAccountComponent implements OnInit {
         form.resetForm();
         return;
       }
-      await this.storage.storage.refFromURL(this.afAuth.auth.currentUser.photoURL).delete();
+
+      const { photoURL } = this.afAuth.auth.currentUser;
+      if (photoURL) {
+        await this.storage.storage.refFromURL(photoURL).delete();
+      }
+
       await this.db.collection('users').doc(this.afAuth.auth.currentUser.uid).delete();
       await this.afAuth.auth.currentUser.delete();
+      
       this.isLoading = false;
       this.wantToClose = false;
       form.resetForm();
